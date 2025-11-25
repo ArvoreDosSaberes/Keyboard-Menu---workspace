@@ -1,0 +1,13 @@
+[submodule "keyboard-menu-freertos"]
+	path = lib/keyboard_menu_freertos
+	url = git@github.com:ArvoreDosSaberes/keyboard_menu_freertos.git
+[submodule "keyboard"]
+	path = lib/keyboard
+	url = git@github.com:ArvoreDosSaberes/keyboard.git
+[submodule "oled"]
+	path = lib/oled
+	url = git@github.com:RapportTecnologia/OLED_SSD1306-RP2040-RP2350.git
+[submodule "FreeRTOS"]
+	path = FreeRTOS-Kernel
+	url = https://github.com/FreeRTOS/FreeRTOS-Kernel.git
+	branch = V11.2.0
