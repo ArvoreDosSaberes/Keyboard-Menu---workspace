@@ -11,3 +11,6 @@
 	path = FreeRTOS-Kernel
 	url = https://github.com/FreeRTOS/FreeRTOS-Kernel.git
 	branch = V11.2.0
+[submodule "i2c-proxy"]
+	path = lib/i2c-proxy
+	url = git@github.com:ArvoreDosSaberes/I2C_Proxy.git
