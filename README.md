@@ -10,14 +10,44 @@
 
 Workspace demonstrando como usar as bibliotecas `Keyboard_Menu_FreeRTOS` e `Keyboard` em projetos C++/CMake, além de integrar recursos de **display OLED SSD1306** (`oled_ssd1306`) e **log colorido em terminal VT100** (`log_vt100`).
 
+## Como clonar o repositório com submódulos
+
+Este workspace depende de várias bibliotecas adicionadas como **submódulos Git** (`keyboard`, `keyboard_menu_freertos`, `oled`, `log_vt100`, `i2c-proxy`, `FreeRTOS-Kernel`, etc.).
+
+Para clonar já trazendo todos os submódulos:
+
+```bash
+git clone --recurse-submodules git@github.com:ArvoreDosSaberes/Keyboard-Menu---workspace.git
+cd Keyboard-Menu---workspace
+```
+
+Se você já clonou **sem** `--recurse-submodules`, inicialize e atualize depois com:
+
+```bash
+git submodule update --init --recursive
+```
+
+E para atualizar os submódulos para as referências registradas no commit atual do workspace:
+
+```bash
+git submodule update --recursive
+```
+
+Se quiser buscar as últimas revisões remotas de cada submódulo (por exemplo durante o desenvolvimento):
+
+```bash
+git submodule update --remote --merge --recursive
+```
+
 ## Visão geral do projeto
 
-Este repositório funciona como **workspace de exemplo** para organizar e demonstrar o uso de duas bibliotecas relacionadas a leitura de teclado matricial e navegação por menus, bem como bibliotecas auxiliares de display e log:
+Este repositório funciona como **workspace de exemplo** para organizar e demonstrar o uso de duas bibliotecas relacionadas a leitura de teclado matricial e navegação por menus, bem como bibliotecas auxiliares de display, log e acesso a barramento I2C:
 
 - **`Keyboard`**: biblioteca de leitura e tratamento de teclado (por exemplo, teclado matricial ou conjunto de botões), focada na **detecção de teclas**, debounce e mapeamento lógico.
 - **`Keyboard_Menu_FreeRTOS`**: biblioteca que utiliza um teclado (via `Keyboard`) para navegação em **menus hierárquicos**, pensada para ambientes com **FreeRTOS** (tarefas, filas, etc.).
 - **`oled_ssd1306`**: biblioteca para controle de display OLED SSD1306 via I2C (API de alto nível `oled.h/.c`).
 - **`log_vt100`**: biblioteca de log colorido em terminal VT100/ANSI, com níveis de log e suporte a formato binário (`%b`).
+ - **`i2c-proxy` (`I2C_Proxy`)**: biblioteca C++ que encapsula o periférico I2C do RP2040/RP2350, com suporte opcional a FreeRTOS via semáforos.
 
 O objetivo deste workspace é servir como **referência de integração** das bibliotecas em um projeto real, facilitando o reuso em outros firmwares ou aplicações embarcadas.
 
@@ -29,6 +59,7 @@ De forma geral, você encontrará algo semelhante a:
 - `lib/Keyboard_Menu_FreeRTOS` – código-fonte da biblioteca de menu baseada em teclado e FreeRTOS.
 - `lib/oled` – código-fonte da biblioteca OLED SSD1306 (`oled_ssd1306`).
 - `lib/log_vt100` – submódulo com a biblioteca de log VT100/ANSI para depuração.
+ - `lib/i2c-proxy` – submódulo com a biblioteca `I2C_Proxy`, wrapper para o periférico I2C e integração com FreeRTOS.
 - `examples/` ou `src/` – exemplos e/ou aplicações de demonstração (dependendo de como o projeto estiver organizado).
 - `CMakeLists.txt` – configuração principal do CMake para montar o workspace e vincular as bibliotecas.
 
